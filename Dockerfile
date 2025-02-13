@@ -6,12 +6,6 @@ WORKDIR /app
 # Install dependencies (this step is cached as long as the dependencies don't change)
 COPY package.json pnpm-lock.yaml ./
 
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-
-RUN \. "$HOME/.nvm/nvm.sh"
-
-RUN nvm install 22
-
 RUN npm install -g corepack@latest
 
 RUN corepack enable pnpm && pnpm install
