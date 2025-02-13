@@ -6,6 +6,10 @@ WORKDIR /app
 # Install dependencies (this step is cached as long as the dependencies don't change)
 COPY package.json pnpm-lock.yaml ./
 
+RUN docker pull node:22-alpine
+
+RUN docker run -it --rm --entrypoint sh node:22-alpine
+
 RUN npm install -g corepack@latest
 
 RUN corepack enable pnpm && pnpm install
