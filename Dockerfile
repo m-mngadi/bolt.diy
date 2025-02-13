@@ -6,9 +6,9 @@ WORKDIR /app
 # Install dependencies (this step is cached as long as the dependencies don't change)
 COPY package.json pnpm-lock.yaml ./
 
-RUN docker pull node:22-alpine
+RUN curl -o- https://fnm.vercel.app/install | bash
 
-RUN docker run -it --rm --entrypoint sh node:22-alpine
+RUN fnm install 22
 
 RUN npm install -g corepack@latest
 
